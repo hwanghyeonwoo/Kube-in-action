@@ -36,3 +36,7 @@ spec:
     rule: RunAsAny
   volumes:
   - '*'
+
+#spec.runAsUser.rule: MustRunAs
+#spec.runAsUser.ranges: min,max : 컨테이너가 사용할 수 있는 ID값(같을 경우 그 값으로만 실행됨)
+#정책 범위를 벗어난 값으로 설정 시 API 서버에서 요청 거절
