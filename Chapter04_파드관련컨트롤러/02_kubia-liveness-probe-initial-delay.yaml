@@ -10,4 +10,7 @@ spec:
       httpGet:
         path: /
         port: 8080
+      initialDelaySeconds: 15
+
+#initialDelaySeconds: 15 초기 지연을 15초로 설정함으로써 애플리케이션이 실행될 시간을 확보
 

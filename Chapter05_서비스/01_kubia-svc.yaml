@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubia
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: kubia
+
+#TCP/UDP 패킷을 처리하는 L4 스위치 역할
+
+#spec.ports : 포트포워딩 정보
+#spec.selector : 관리할 파드의 레이블 정보
+
+#kubectl get svc 정보 조회 후 클러스터 IP생성 확인(내부IP)
+
+#kubectl exec {파드명} -- curl -s http://10.111.249.153
+#서비스에 연결된 app:kubia 레이블을 가진 파드에 요청 전송
+
+#세션 어피니티: 특정 클라이언트의 요청을 매번 같은 파드로 전송
+#spec.sessionAffinity: ClientIP
+#spec.ports 필드에 리스트 형태로 여러 개의 포트포워딩 가능

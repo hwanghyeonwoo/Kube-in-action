@@ -15,3 +15,5 @@ spec:
           containers:
           - name: main
             image: luksa/batch-job
+
+#spec.schedule 필드를 활용해 크론잡 정의 가능

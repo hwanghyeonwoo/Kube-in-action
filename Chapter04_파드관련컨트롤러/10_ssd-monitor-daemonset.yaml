@@ -1,0 +1,27 @@
+apiVersion: apps/v1beta2
+kind: DaemonSet
+metadata:
+  name: ssd-monitor
+spec:
+  selector:
+    matchLabels:
+      app: ssd-monitor
+  template:
+    metadata:
+      labels:
+        app: ssd-monitor
+    spec:
+      nodeSelector:
+        disk: ssd
+      containers:
+      - name: main
+        image: luksa/ssd-monitor
+
+#데몬셋: 모든 노드에 하나의 파드만 실행되길 원하는 경우
+#ex) 로그 수집기, 리소스 모니터, kube-proxy 등
+
+#spec.selector.matchLabels: 일치하는 레이블의 파드 관리
+#spec.template.spec.nodeSelector: 속성을 통해 원하는 노드만 선택 가능
+
+#kubectl label node {노드명} disk=ssd 로 노드에 레이블 추가 후 데몬셋 생성 확인
+#kubectl get ds

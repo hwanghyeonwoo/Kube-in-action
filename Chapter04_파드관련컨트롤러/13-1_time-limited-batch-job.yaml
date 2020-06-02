@@ -14,4 +14,7 @@ spec:
       - name: main
         image: luksa/batch-job
 
+#spec.activeDeadlineSeconds 필드를 활용해 작업의 최대 수행시간 제한 가능
+#spec.backoffLimit 필드를 활용해 잡 재시도 횟수 정의 가능
+
 

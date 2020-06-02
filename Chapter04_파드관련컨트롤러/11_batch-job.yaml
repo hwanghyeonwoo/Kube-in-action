@@ -14,3 +14,8 @@ spec:
         image: luksa/batch-job
 
 
+#1회성 프로세스를 수행하는 파드 Job
+
+#kubectl get po : 2분 뒤 파드 완료
+#kubectl logs batch-jab-파드명 : 잡이 관리하는 파드의 로그 확인
+#kubectl get job : DESIRED 컬럼 확인

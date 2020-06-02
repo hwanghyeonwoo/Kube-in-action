@@ -15,4 +15,7 @@ spec:
       - name: main
         image: luksa/batch-job
 
+#spec.parallelism 속성을 통해 한번에 실행되는 최대 파드의 수(병렬 실행) 설정
+
+#kubectl scale job {잡명} --replicas 3 형태로 병렬 개수 변경 가능
 

@@ -5,8 +5,11 @@ metadata:
 spec:
   replicas: 3
   selector:
-    matchLabels:
-      app: kubia
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+         - kubia
   template:
     metadata:
       labels:
@@ -15,3 +18,7 @@ spec:
       containers:
       - name: kubia
         image: luksa/kubia
+
+#matchExpressions 셀렉터
+#파드의 키가 app인 레이블 중 값이 kubia인 파드
+#In, NotIn, Exists 등등

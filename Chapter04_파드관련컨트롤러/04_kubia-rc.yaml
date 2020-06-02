@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: kubia
+spec:
+  replicas: 3
+  selector:
+    app: kubia
+  template:
+    metadata:
+      labels:
+        app: kubia
+    spec:
+      containers:
+      - name: kubia
+        image: luksa/kubia
+        ports:
+        - containerPort: 8080
+
+#Replication Controller (RC)
+#클러스터 내 파드의 수를 일정하게 유지(노드 장애 및 파드 장애 대비)
+#레이블 셀렉터, 레플리카 수, 파드 템플릿 3가지 핵심 요소
+
+#spec.replicas : 원하는 파드 인스턴스 수
+#spec.selector : RC가 관리할 파드의 라벨
+#template : 새 파드에 사용할 파드 템플릿
+
+#1.RC생성 후 파드 조회
+#kubectl create -f kubia-rc.yaml
+#kubectl get pods
+
+#2.파드 한개 임의 삭제 후 파드 조회
+#kubectl delete pod {파드 한개의 이름}
+#kubectl get pods
+
+#3.RC정보조회
+#kubectl get rc
+#kubectl describe rc kubia
+
+#4.파드의 정보 임의로 변경
+#kubectl label pod {파드명} type=special : 라벨 추가 시 변동사항 없음
+#kubectl label pod {파드명} app=foo --overwrite : RC에 의해 관리되던 라벨 변경 시 RC에 의해 새로운 파드가 생성
+
+#5.RC의 템플릿 변경
+#kubectl edit rc kubia로 template.metadata에 라벨 한 개 추가
+#기존 파드엔 아무런 영향 미치지 않음, 새로 생성되는 파드에만 영향
+
+#6.RC의 스케일 업/다운
+#kubectl scale rc kubia --replicas=10 또는
+#kubectl edit rc kubia 의 spec.replicas 변경
+
+#7.RC 삭제
+#kubectl delete rc kubia --cascade=false - 파드는 남기고 컨트롤러만 삭제
