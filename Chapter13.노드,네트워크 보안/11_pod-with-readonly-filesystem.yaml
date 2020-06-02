@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-readonly-filesystem
+spec:
+  containers:
+  - name: main
+    image: alpine
+    command: ["/bin/sleep", "999999"]
+    securityContext:
+      readOnlyRootFilesystem: true
+    volumeMounts:
+    - name: my-volume
+      mountPath: /volume
+      readOnly: false
+  volumes:
+  - name: my-volume
+    emptyDir:
+
+# securityContext.readOnlyRootFilesystem: true 를 통해 컨테이너가 파일시스템을 쓰지 못하도록 방지
+# 마운트된 볼륨에만 작성 가능
+# kubectl exec -it pod-with-readonly-filesystem touch /volume/newfile

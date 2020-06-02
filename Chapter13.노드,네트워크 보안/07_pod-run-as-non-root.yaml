@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-run-as-non-root
+spec:
+  containers:
+  - name: main
+    image: alpine
+    command: ["/bin/sleep", "999999"]
+    securityContext:
+      runAsNonRoot: true
+
+# runAsNonRoot: true로 지정하면 루트가 기본 사용자인 이미지는 스케줄링 후 실행되지 않는다.

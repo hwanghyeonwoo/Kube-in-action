@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-privileged
+spec:
+  containers:
+  - name: main
+    image: alpine
+    command: ["/bin/sleep", "999999"]
+    securityContext:
+      privileged: true
+
+#privileged: true 를 통해 특권 모드로 실행
+#ls /dev 명령을 통해 확인(모든 장치를 자유롭게 사용할 수 있음)
+#ex) 라즈베리파이의 LED를 제어할 경우
